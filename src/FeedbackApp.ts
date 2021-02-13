@@ -55,6 +55,16 @@ export class FeedbackApp {
     const finalString = `${word}: ${comment} ${dateString} ${newRating}`;
     console.log(finalString);
     console.log(finalString.length);
+    if (finalString.length > 80) {
+      const noDateFinalString = `${word}: ${comment} ${newRating}`;
+      if (noDateFinalString.length <= 80) {
+        console.log(noDateFinalString);
+      }
+      const charAllowed = 80 - word.length - newRating.length - 5;
+      const newComment = comment.slice(0, charAllowed);
+      const noDateTruncComment = `${word}: ${newComment} ${newRating}`;
+      console.log(noDateTruncComment);
+    }
     return feedback;
   }
 }

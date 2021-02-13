@@ -1,5 +1,8 @@
-let assert = require("assert");
-let FeedbackApp = require("../../src/FeedbackApp.js");
+import assert from 'assert';
+import { FeedbackApp } from '../../src/FeedbackApp';
+
+// let assert = require("assert");
+// let FeedbackApp = require("../../src/FeedbackApp.js");
 
 describe("FeedbackApp", function() {
   let app = new FeedbackApp();
