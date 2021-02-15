@@ -1,11 +1,11 @@
 import assert from 'assert';
-import { FeedbackApp } from '../../src/FeedbackApp';
+import { FeedbackApp } from '../src/FeedbackApp';
 
 // let assert = require("assert");
 // let FeedbackApp = require("../../src/FeedbackApp.js");
 
 describe("FeedbackApp", function() {
-  let app = new FeedbackApp();
+  const app = new FeedbackApp();
 
   describe("#formatFeedback", function() {
     it("should format the feedback to one line", function() {
@@ -44,21 +44,21 @@ describe("FeedbackApp", function() {
   });
 });
 
-let swashbucklerFeedback = {
+const swashbucklerFeedback = {
   word: "swashbuckler",
   comment: "Yar, a good word, matey! Shiver me timbers!",
   date: "19 Sep 2019 12:12:00 GMT",
   rating: 85
 };
 
-let slubberFeedback = {
+const slubberFeedback = {
   word: "slubber",
   comment: "Slubber sounds like slobber. So gross! More pretty words, please!",
   date: "10 Sep 2019 04:14:00 PST",
   rating: 21
 };
 
-let textlationshipFeedback = {
+const textlationshipFeedback = {
   word: "textlationship",
   comment:
     "I'm in a textlationship with my friend! We text all the time! I feel like it's every second! LMAO!",
@@ -66,7 +66,7 @@ let textlationshipFeedback = {
   rating: 60
 };
 
-let hyperbolicFeedback = {
+const hyperbolicFeedback = {
   word: "hyperbolic",
   comment: "How come teethpaste isn't in the dictionary?",
   date: "22 Aug 2019 01:20:00 PST"

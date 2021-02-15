@@ -1,77 +1,79 @@
-function convertRating(rating : number) {
+function convertRating(rating : number | null | undefined) {
+  if (rating == null) {
+    return '';
+  }
   const newRating = rating / 20;
-  if (newRating >= 0.01 && newRating <= 0.49) {
+
+  if (newRating >= 0.01 && newRating <= 0.74) {
     return '½';
   }
-  if (newRating >= 0.5 && newRating <= 1.49) {
+  if (newRating >= 0.75 && newRating <= 1.00) {
     return '★';
   }
-  if (newRating >= 1.5 && newRating <= 1.99) {
+  if (newRating >= 1.01 && newRating <= 1.74) {
     return '★½';
   }
-  if (newRating >= 2 && newRating <= 2.49) {
+  if (newRating >= 1.75 && newRating <= 2.24) {
     return '★★';
   }
-  if (newRating >= 2.5 && newRating <= 2.99) {
+  if (newRating >= 2.25 && newRating <= 2.74) {
     return '★★½';
   }
-  if (newRating >= 3 && newRating <= 3.49) {
+  if (newRating >= 2.75 && newRating <= 3.24) {
     return '★★★';
   }
-  if (newRating >= 3.5 && newRating <= 3.99) {
+  if (newRating >= 3.25 && newRating <= 3.74) {
     return '★★★½';
   }
-  if (newRating >= 4 && newRating <= 4.49) {
+  if (newRating >= 3.75 && newRating <= 4.24) {
     return '★★★★';
   }
-  if (newRating >= 4.5 && newRating <= 4.99) {
+  if (newRating >= 4.25 && newRating <= 4.74) {
     return '★★★★½';
   }
-  if (newRating >= 5) {
+  if (newRating >= 4.75) {
     return '★★★★★';
-  } return 'no rating';
+  }
+  return 'no rating';
 }
 
 export class FeedbackApp {
-  formatFeedback(feedback : FeedBack) : FeedBack {
+  formatFeedback(feedback : FeedBack) : string {
     /* Start here */
     const {
       word, comment, date, rating,
     } = feedback;
-    console.log(word);
-    console.log(comment);
-    console.log(date);
-    console.log(rating);
     const newRating = convertRating(rating);
     const instDate = new Date(date);
-    const month = instDate.getMonth();
+    const month = instDate.getMonth() + 1;
     const day = instDate.getDate();
     const year = instDate.getFullYear();
     //  (9/19/2019)
     const dateString = `(${month}/${day}/${year})`;
-    console.log(dateString);
     // swashbuckler: Yar, a good word, matey! Shiver me timbers! ★★★★½ (9/19/2019)
 
-    const finalString = `${word}: ${comment} ${dateString} ${newRating}`;
-    console.log(finalString);
-    console.log(finalString.length);
+    const finalString = `${word}: ${comment} ${newRating} ${dateString}`;
+    if (newRating === '') {
+      const noRatingString = `${word}: ${comment} ${dateString}`;
+      return noRatingString;
+    }
     if (finalString.length > 80) {
       const noDateFinalString = `${word}: ${comment} ${newRating}`;
       if (noDateFinalString.length <= 80) {
-        console.log(noDateFinalString);
+        return noDateFinalString;
       }
-      const charAllowed = 80 - word.length - newRating.length - 5;
+      const charAllowed = 80 - word.length - newRating.length - 8;
       const newComment = comment.slice(0, charAllowed);
-      const noDateTruncComment = `${word}: ${newComment} ${newRating}`;
-      console.log(noDateTruncComment);
+      const noDateTruncComment = `${word}: ${newComment} ... ${newRating}`;
+      return noDateTruncComment;
     }
-    return feedback;
+    return finalString;
   }
 }
 
 export type FeedBack = {
   word: string;
   comment: string;
-  date: Date;
-  rating: number;
+  date: string;
+  rating?: number;
 };

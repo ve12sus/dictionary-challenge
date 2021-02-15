@@ -11,13 +11,13 @@
       "moduleResolution": "node",
       "allowSyntheticDefaultImports": true,
       "esModuleInterop": true,
-      "types": ["node"],
+      "types": ["node", "mocha"],
       "outDir": "./build",
       "rootDir": "./src"
     },
   
     "exclude": [
-      "build", "node_modules"
+      "build", "node_modules", "test"
     ]
   }
   
